@@ -7,7 +7,11 @@ Users can create, read, update, and delete both recipes and shopping lists.
 
 It is developed with FAST API.
 
-## Installation
+## Run API with Docker
+ ToDo: complete instructions.
+
+
+## Installation for developers
 
 ### Prerequisites
 
@@ -34,7 +38,7 @@ Restart your terminal session and verify pipx does run.
 **For other installation options check the link above.**
 
 
-3 - Install Poetry for dependency management and packaging (https://python-poetry.org/docs/#installation):
+3 - Install Poetry for dependency management (https://python-poetry.org/docs/#installation):
 `pipx install poetry`
 
 ### Setup
@@ -43,10 +47,16 @@ Restart your terminal session and verify pipx does run.
 
 `git clone https://github.com/antobarbero/my-recipes-shopping-list.git`
 
-2 - Create a virtualenvironment and activate it with poetry.
-
-``
-
-3 - Install dependencies with poetry:
+2 - Create a virtualenvironment and install dependencies with poetry:
 
 `poetry install`
+
+3 - Set the created virtual environment as your project interpreter.
+
+4 - Run the server:
+
+`fastapi dev main.py`
+
+5 - Open your browser
+
+http://127.0.0.1:8000/items/5?q=somequery
