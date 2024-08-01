@@ -57,6 +57,14 @@ Restart your terminal session and verify pipx does run.
 
 `fastapi dev main.py`
 
-5 - Open your browser
+5 - Open your browser at
 
-http://127.0.0.1:8000/items/5?q=somequery
+http://127.0.0.1:8000/
+
+
+### API Documentation
+
+API docs  available here:
+
+* Swagger UI: http://127.0.0.1:8000/docs
+* ReDoc: http://127.0.0.1:8000/redoc
