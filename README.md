@@ -55,7 +55,7 @@ Restart your terminal session and verify pipx does run.
 
 4 - Run the server:
 
-`fastapi dev main.py`
+`uvicorn app.main:app`
 
 5 - Open your browser at
 
@@ -68,3 +68,8 @@ API docs  available here:
 
 * Swagger UI: http://127.0.0.1:8000/docs
 * ReDoc: http://127.0.0.1:8000/redoc
+
+
+### Run tests
+
+`pytest tests`
