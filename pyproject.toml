@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "my-recipes-shopping-list"
+version = "0.1.0"
+description = "Recipes & Shopping List Management API"
+authors = ["Antonella Barbero <antobarbero94@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/antobarbero/my-recipes-shopping-list"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi= "^0.111"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^21.9b0"
+mypy = "^0.910"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
