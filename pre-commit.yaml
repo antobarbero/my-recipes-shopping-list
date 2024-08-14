@@ -1,0 +1,51 @@
+repos:
+- repo: local
+  hooks:
+  - id: end-of-file-fixer
+    name: fix end of files
+    description: Ensures that a file is either empty, or ends with one newline.
+    entry: end-of-file-fixer
+    types: [text]
+    language: python
+  - id: check-docstring-first
+    name: check-docstring-first
+    description: Checks for a common error of placing code before the docstring.
+    entry: check-docstring-first
+    types: [python]
+    language: python
+  - id: check-ast
+    name: check-ast
+    description: Simply check whether files parse as valid python.
+    entry: check-ast
+    types: [python]
+    language: python
+  - id: check-case-conflict
+    name: check-case-conflict
+    entry: check-case-conflict
+    types: [python]
+    language: python
+  - id: check-yaml
+    name: check-yaml
+    entry: check-yaml --allow-multiple-documents
+    types: [file, yaml]
+    language: python
+  - id: check-added-large-files
+    name: check-added-large-files
+    entry: check-added-large-files --maxkb=1024
+    types: [file]
+    language: python
+  - id: black
+    name: black
+    entry: poetry run black
+    types: [python]
+    language: python
+  - id: ruff
+    name: ruff
+    entry: poetry run ruff . --fix
+    types: [python]
+    language: python
+  - id: mypy
+    name: mypy
+    entry: poetry run mypy --no-strict-optional --ignore-missing-imports --install-types --non-interactive
+    types: [python]
+    language: python
