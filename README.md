@@ -7,8 +7,30 @@ Users can create, read, update, and delete both recipes and shopping lists.
 
 It is developed with FAST API.
 
-## Run API with Docker
- ToDo: complete instructions.
+## Build and run API with Docker
+
+### Prerequisites (Windows)
+
+1 - Install wsl (https://learn.microsoft.com/windows/wsl/install)
+2 - Install DockerDesktop (https://docs.docker.com/desktop/install/windows-install/)
+
+### Build and run
+
+1 - Open DockerDesktop
+2 - Build image by running this command in your terminal:
+`docker build -t recipes-app .`
+
+3 - Run the container by running this command:
+`docker run -p 8080:8080 recipes-app`
+
+4 - API must be running at: http://127.0.0.1:8080/
+
+5 - API docs  available here:
+
+* Swagger UI: http://127.0.0.1:8080/docs
+* ReDoc: http://127.0.0.1:8080/redoc 
+ 
+- ToDo: complete instructions.
 
 
 ## Installation for developers
