@@ -1,5 +1,6 @@
 repos:
-- repo: local
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
   hooks:
   - id: end-of-file-fixer
     name: fix end of files
@@ -34,16 +35,26 @@ repos:
     entry: check-added-large-files --maxkb=1024
     types: [file]
     language: python
+# Using this mirror lets us use mypyc-compiled black, which is about 2x faster
+- repo: https://github.com/psf/black-pre-commit-mirror
+  rev: 24.8.0
+  hooks:
   - id: black
     name: black
     entry: poetry run black
     types: [python]
     language: python
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.5.7
+  hooks:
   - id: ruff
     name: ruff
     entry: poetry run ruff . --fix
     types: [python]
     language: python
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.11.1
+  hooks:
   - id: mypy
     name: mypy
     entry: poetry run mypy --no-strict-optional --ignore-missing-imports --install-types --non-interactive
