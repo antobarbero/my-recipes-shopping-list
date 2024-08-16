@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from app.main import app, Item
+from app.main import app, Recipe
 
 client = TestClient(app)
 
@@ -7,23 +7,32 @@ client = TestClient(app)
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"Hello": "World"}
+    assert response.json() == "Welcome to the recipes web api."
 
 
-def test_read_item():
-    item_id = 1
-    response = client.get(f"/items/{item_id}")
+def test_read_recipes():
+    response = client.get("/recipes")
     assert response.status_code == 200
-    assert response.json() == {"item_id": item_id, "q": None}
 
-    response = client.get(f"/items/{item_id}", params={"q": "test"})
+
+def test_read_recipe():
+    recipe_id = 1
+    response = client.get(f"/recipes/{recipe_id}")
     assert response.status_code == 200
-    assert response.json() == {"item_id": item_id, "q": "test"}
 
 
-def test_update_item():
-    item_id = 1
-    item = Item(name="Test Item", price=10.5, is_offer=True)
-    response = client.put(f"/items/{item_id}", json=item.dict())
+def test_update_recipe():
+    recipe_id = 1
+    recipe = Recipe(
+        title="Test Recipe",
+        instructions="Prepare it like this.",
+        ingredients=["onions", "chicken"],
+    )
+    response = client.put(f"/recipes/{recipe_id}", json=recipe.model_dump())
     assert response.status_code == 200
-    assert response.json() == {"item_name": item.name, "item_id": item_id}
+
+
+def test_delete_recipe():
+    recipe_id = 1
+    response = client.delete(f"/recipes/{recipe_id}")
+    assert response.status_code == 200

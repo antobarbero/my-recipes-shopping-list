@@ -7,8 +7,30 @@ Users can create, read, update, and delete both recipes and shopping lists.
 
 It is developed with FAST API.
 
-## Run API with Docker
- ToDo: complete instructions.
+## Build and run API with Docker
+
+### Prerequisites (Windows)
+
+1 - Install wsl (https://learn.microsoft.com/windows/wsl/install)
+2 - Install DockerDesktop (https://docs.docker.com/desktop/install/windows-install/)
+
+### Build and run
+
+1 - Open DockerDesktop
+2 - Build image by running this command in your terminal:
+`docker build -t recipes-app .`
+
+3 - Run the container by running this command:
+`docker run -p 8080:8080 recipes-app`
+
+4 - API must be running at: http://127.0.0.1:8080/
+
+5 - API docs  available here:
+
+* Swagger UI: http://127.0.0.1:8080/docs
+* ReDoc: http://127.0.0.1:8080/redoc 
+ 
+- ToDo: complete instructions.
 
 
 ## Installation for developers
@@ -31,7 +53,7 @@ WARNING: The script pipx.exe is installed in `<USER folder>\AppData\Roaming\Pyth
 If so, go to the mentioned folder, allowing you to run the pipx executable directly. Enter the following line 
 (even if you did not get the warning):
 .\pipx.exe ensurepath
-This will add both the above mentioned path and the %USERPROFILE%\.local\bin folder to your search path. 
+This will add both the mentioned above path and the %USERPROFILE%\.local\bin folder to your search path. 
 Restart your terminal session and verify pipx does run.
 
 
@@ -47,11 +69,18 @@ Restart your terminal session and verify pipx does run.
 
 `git clone https://github.com/antobarbero/my-recipes-shopping-list.git`
 
-2 - Create a virtualenvironment and install dependencies with poetry:
+2 - Create a virtualenvironment and install dependencies with poetry by running this command:
 
 `poetry install`
 
-3 - Set the created virtual environment as your project interpreter.
+3 - Activate the created virtual environment (.venv) 
+
+Windows: `.venv\Scripts\activate`
+
+Or set the created virtual environment as your project interpreter and open a new terminal to have it activated.
+
+(in pycharm: Settings -> Python Interpreter -> add local 
+  -> Select 'Existing'-> Select "my-recipes-shopping-list\.venv\Scripts\python.exe)
 
 4 - Run the server:
 
@@ -61,6 +90,13 @@ Restart your terminal session and verify pipx does run.
 
 http://127.0.0.1:8000/
 
+6 - Before contributing, install the pre-commit hooks by running the following command:
+
+`pre-commit install`
+
+This will automatically execute some hooks when you commit your changes
+to format the code, checking complexity, typehints, etc.
+You can see all the activated hooks in the `.pre-commit-config.yaml` file.
 
 ### API Documentation
 
