@@ -108,4 +108,11 @@ API docs  available here:
 
 ### Run tests
 
+#### With pytest
+
+Execute this command in your terminal with the poetry virtual environment activated:
+
 `pytest tests`
+
+#### With docker
+ ToDo: complete instructions
