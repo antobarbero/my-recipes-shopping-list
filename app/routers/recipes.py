@@ -1,15 +1,7 @@
 from fastapi import APIRouter
-from typing import List
-
-from pydantic import BaseModel
+from app.schemas import Recipe
 
 router = APIRouter(prefix="/recipes")
-
-
-class Recipe(BaseModel):
-    title: str
-    instructions: str
-    ingredients: List[str]
 
 
 @router.get("/")

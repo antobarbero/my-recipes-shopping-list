@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from app.main import app
-from app.routers.recipes import Recipe
+from app.schemas import Recipe
 
 client = TestClient(app)
 
