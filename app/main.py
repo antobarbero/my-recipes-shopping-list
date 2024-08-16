@@ -1,4 +1,4 @@
-from typing import Union
+from typing import List
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -6,22 +6,44 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
+class Recipe(BaseModel):
+    title: str
+    instructions: str
+    ingredients: List[str]
 
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return "Welcome to the recipes web api."
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/recipes")
+def read_recipes():
+    """Retrieves all recipes ids and titles."""
+    # ToDo: implement.
+    return "Not implemented"
 
 
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item: Item):
-    return {"item_name": item.name, "item_id": item_id}
+@app.get("/recipes/{recipe_id}")
+def read_recipe(recipe_id: int):
+    """Retrieves recipe with the given `recipe_id`."""
+    # ToDo: implement.
+    return {
+        "recipe_id": recipe_id,
+        "instructions": "Prepare",
+        "ingredients": "chicken, wine and onions",
+    }
+
+
+@app.put("/recipes/{recipe_id}")
+def update_recipe(recipe_id: int, recipe: Recipe):
+    """Updates recipe with the given `recipe_id`."""
+    # ToDo: implement.
+    return {"recipe_title": recipe.title, "recipe_id": recipe_id}
+
+
+@app.delete("/recipes/{recipe_id}")
+def delete_recipe(recipe_id: int):
+    """Deletes recipe with the given `recipe_id`."""
+    # ToDo: implement.
+    return {"recipe_id": recipe_id}
