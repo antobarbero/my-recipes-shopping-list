@@ -21,6 +21,16 @@ def test_read_recipe():
     assert response.status_code == 200
 
 
+def test_create_recipe():
+    recipe = Recipe(
+        title="Test Recipe",
+        instructions="Prepare it like this.",
+        ingredients=["onions", "chicken"],
+    )
+    response = client.post("/recipes/", json=recipe.model_dump())
+    assert response.status_code == 201
+
+
 def test_update_recipe():
     recipe_id = 1
     recipe = Recipe(

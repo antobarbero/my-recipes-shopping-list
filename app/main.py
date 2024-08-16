@@ -35,6 +35,13 @@ def read_recipe(recipe_id: int):
     }
 
 
+@app.post("/recipes/", status_code=201)
+def create_recipe(recipe: Recipe):
+    """Updates recipe with the given `recipe_id`."""
+    # ToDo: implement.
+    return {"recipe_title": recipe.title}
+
+
 @app.put("/recipes/{recipe_id}")
 def update_recipe(recipe_id: int, recipe: Recipe):
     """Updates recipe with the given `recipe_id`."""
