@@ -28,9 +28,7 @@ It is developed with FAST API.
 5 - API docs  available here:
 
 * Swagger UI: http://127.0.0.1:8080/docs
-* ReDoc: http://127.0.0.1:8080/redoc 
- 
-- ToDo: complete instructions.
+* ReDoc: http://127.0.0.1:8080/redoc
 
 
 ## Installation for developers
@@ -63,6 +61,8 @@ Restart your terminal session and verify pipx does run.
 3 - Install Poetry for dependency management (https://python-poetry.org/docs/#installation):
 `pipx install poetry`
 
+4 - Install MongoDB Shell (https://www.mongodb.com/docs/mongodb-shell/install/)
+
 ### Setup
 
 1 - Clone the repository
@@ -82,15 +82,19 @@ Or set the created virtual environment as your project interpreter and open a ne
 (in pycharm: Settings -> Python Interpreter -> add local 
   -> Select 'Existing'-> Select "my-recipes-shopping-list\.venv\Scripts\python.exe)
 
-4 - Run the server:
+4 - Copy file called ".env.dist" and rename it to ".env". Complete the values of the
+environment variables. This file must contain, for example, credentials to authenticate
+to the database.
+
+5 - Run the server:
 
 `uvicorn app.main:app`
 
-5 - Open your browser at
+6 - Open your browser at
 
 http://127.0.0.1:8000/
 
-6 - Before contributing, install the pre-commit hooks by running the following command:
+7 - Before contributing, install the pre-commit hooks by running the following command:
 
 `pre-commit install`
 
