@@ -1,10 +1,13 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
+from dotenv import dotenv_values
+
+c = dotenv_values()
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file="..\\.env", env_file_encoding="utf-8")
     app_name: str = "My Recipes and Shopping Lists"
-    mongo_db_connection_string: str
+    db_name: str = "recipes_and_shopping_lists"
+    mongo_db_connection_string: str = c["MONGO_DB_CONNECTION_STRING"]
 
 
 settings = Settings()
