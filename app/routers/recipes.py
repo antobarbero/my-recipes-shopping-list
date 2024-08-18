@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.schemas import Recipe
+from app.models import Recipe
 
 router = APIRouter(prefix="/recipes")
 

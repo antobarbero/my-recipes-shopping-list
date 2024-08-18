@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from app.main import app
-from app.schemas import Recipe
+from app.models import Recipe
 
 client = TestClient(app)
 
