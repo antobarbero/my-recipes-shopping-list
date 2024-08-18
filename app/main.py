@@ -1,15 +1,15 @@
-from typing import List
-
 from fastapi import FastAPI
-from pydantic import BaseModel
+from .routers import recipes
+from pymongo.mongo_client import MongoClient
+from .config import settings
+import logging
+
 
 app = FastAPI()
 
+logger = logging.getLogger("uvicorn.error")
 
-class Recipe(BaseModel):
-    title: str
-    instructions: str
-    ingredients: List[str]
+app.include_router(recipes.router)
 
 
 @app.get("/")
@@ -17,33 +17,14 @@ def read_root():
     return "Welcome to the recipes web api."
 
 
-@app.get("/recipes")
-def read_recipes():
-    """Retrieves all recipes ids and titles."""
-    # ToDo: implement.
-    return "Not implemented"
+@app.on_event("startup")
+def startup_db_client():
+    app.mongodb_client = MongoClient(settings.mongo_db_connection_string)
+    app.database = app.mongodb_client[settings.db_name]
+    logger.info("Connected to the MongoDB database!")
 
 
-@app.get("/recipes/{recipe_id}")
-def read_recipe(recipe_id: int):
-    """Retrieves recipe with the given `recipe_id`."""
-    # ToDo: implement.
-    return {
-        "recipe_id": recipe_id,
-        "instructions": "Prepare",
-        "ingredients": "chicken, wine and onions",
-    }
-
-
-@app.put("/recipes/{recipe_id}")
-def update_recipe(recipe_id: int, recipe: Recipe):
-    """Updates recipe with the given `recipe_id`."""
-    # ToDo: implement.
-    return {"recipe_title": recipe.title, "recipe_id": recipe_id}
-
-
-@app.delete("/recipes/{recipe_id}")
-def delete_recipe(recipe_id: int):
-    """Deletes recipe with the given `recipe_id`."""
-    # ToDo: implement.
-    return {"recipe_id": recipe_id}
+@app.on_event("shutdown")
+def shutdown_db_client():
+    app.mongodb_client.close()
+    logger.info("MongoDB connection closed.")
